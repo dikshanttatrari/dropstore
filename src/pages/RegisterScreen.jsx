@@ -48,7 +48,7 @@ function RegisterScreen() {
     e.preventDefault();
 
     try {
-      await axios.post("http://192.168.1.8:8080/register", data);
+      await axios.post("https://api.drop-store.me/register", data);
       toast.success(
         "Registration successful! Please check your email to verify your account."
       );

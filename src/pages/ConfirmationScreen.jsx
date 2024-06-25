@@ -32,7 +32,7 @@ function ConfirmationScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/clear-cart", {
+      const response = await fetch("https://api.drop-store.me/clear-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function ConfirmationScreen() {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/get-addresses", {
+    const response = await fetch("https://api.drop-store.me/get-addresses", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -101,7 +101,7 @@ function ConfirmationScreen() {
   const handlePlaceOrder = async () => {
     const token = localStorage.getItem("authToken");
     try {
-      const response = await fetch("http://192.168.1.8:8080/order", {
+      const response = await fetch("https://api.drop-store.me/order", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -148,7 +148,7 @@ function ConfirmationScreen() {
 
     //       try {
     //         const dataResponse = await fetch(
-    //           "http://192.168.1.8:8080/order",
+    //           "https://api.drop-store.me/order",
     //           {
     //             method: "POST",
     //             headers: {

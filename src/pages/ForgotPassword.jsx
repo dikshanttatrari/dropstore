@@ -5,7 +5,7 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleClick = async () => {
-    const response = await fetch("http://192.168.1.8:8080/forgot-password", {
+    const response = await fetch("https://api.drop-store.me/forgot-password", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

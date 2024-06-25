@@ -151,7 +151,7 @@ function UploadProduct({ onClose, fetchData }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.8:8080/upload-product",
+        "https://api.drop-store.me/upload-product",
         data
       );
 

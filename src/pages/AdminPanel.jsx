@@ -19,7 +19,7 @@ function AdminPanel() {
 
       try {
         const response = await axios.get(
-          "http://192.168.1.8:8080/user-details",
+          "https://api.drop-store.me/user-details",
           {
             headers: {
               Authorization: `Bearer ${token}`,

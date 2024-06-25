@@ -11,7 +11,7 @@ function SearchProduct() {
   const fetchProducts = async () => {
     const params = new URLSearchParams(query?.search);
     const response = await fetch(
-      "http://192.168.1.8:8080/search" + query?.search
+      "https://api.drop-store.me/search" + query?.search
     );
     const data = await response.json();
     setData(data);

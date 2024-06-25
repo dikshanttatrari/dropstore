@@ -40,7 +40,7 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/all-orders", {
+    const response = await fetch("https://api.drop-store.me/all-orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,11 +62,14 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await axios.get("http://192.168.1.8:8080/user-details", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://api.drop-store.me/user-details",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setUserData(response.data);
     } catch (error) {
       console.log("Error fetching user details", error);
@@ -93,7 +96,7 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await fetch("http://192.168.1.8:8080/add-address", {
+      const response = await fetch("https://api.drop-store.me/add-address", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -133,7 +136,7 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/delete-address", {
+    const response = await fetch("https://api.drop-store.me/delete-address", {
       method: "POST",
       headers: {
         "content-type": "application/json",
