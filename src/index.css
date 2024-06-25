@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html, body{
+    font-family: 'Poppins', sans-serif;
+    @apply bg-[#111] text-white;
+    transition: ease all 0.3s;
+  }
+  
+  *{
+    transition: ease all 0.3s;
+  }
+  
+  .search::-webkit-input-placeholder {
+    color: white;
+  }
+
+  .address {
+    width: 35ch
+  }
+  
+  .about{
+    width: 40ch
+  }
+
+  .categories{
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .gridd{
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1440px) and (max-width: 1920px) {
+    .gridd{
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+  }
+
+  
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    .footer{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    } 
+  
+    .about-div{
+      margin: 10px 10px 10px 10px;
+    }
+  
+    .about{
+      width: 39ch;
+    }
+  
+    .social{
+      margin: 10px 10px 5px 10px;
+    }
+    .useful-links{
+      margin: 10px 10px 10px 10px;
+    }
+    .address-div{
+      margin: 10px;
+    }
+  }
+
+
+  .userTable th{
+    @apply border text-base font-medium p-1
+}
+
+.userTable {
+    @apply bg-[#333]
+}
+
+.userTable td{
+    @apply border text-base text-center p-1 
+}
+
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
+}

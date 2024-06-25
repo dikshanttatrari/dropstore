@@ -1,0 +1,11 @@
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .gridd{
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1440px) and (max-width: 1920px) {
+    .gridd{
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+  }
