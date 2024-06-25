@@ -7,14 +7,14 @@ import { TbBrandTelegram } from "react-icons/tb";
 
 export default function Footer() {
   const goToInsta = () => {
-    window.open("https://www.instagram.com/dropstore.live/");
+    window.open("https://www.instagram.com/dropstore.me/");
   };
   const goToWhatsapp = () => {
     window.open("https://whatsapp.com/channel/0029VaDOQW105MUmXuAbFl1B");
   };
 
   const goToTelegram = () => {
-    window.open("https://t.me/dropstoredotlive");
+    window.open("https://t.me/dropstoredotme");
   };
 
   return (
