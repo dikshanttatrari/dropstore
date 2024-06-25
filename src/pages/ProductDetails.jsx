@@ -237,7 +237,7 @@ const ProductDetails = () => {
             </div>
             <div className="relative w-full max-w-md">
               <button
-                className="absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hidden md:block"
+                className="absolute -left-6 top-12 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hidden md:block"
                 onClick={scrollLeft}
               >
                 <FaChevronLeft className="text-black" />
@@ -266,7 +266,7 @@ const ProductDetails = () => {
                 })}
               </div>
               <button
-                className="absolute -right-6 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hidden md:block"
+                className="absolute -right-6 top-12 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hidden md:block"
                 onClick={scrollRight}
               >
                 <FaChevronRight className="text-black" />
@@ -323,6 +323,16 @@ const ProductDetails = () => {
               <div className="mt-4 md:mt-4">
                 <p className="text-gray-400 text-md">Category:</p>
                 <p className="text-sm capitalize">{data.category}</p>
+              </div>
+              <div className="mt-4 md:mt-4">
+                <p className="text-gray-400 text-md">Seller:</p>
+                <p className="text-sm">Krishna General Store</p>
+              </div>
+              <div className="mt-4 md:mt-4">
+                <p className="text-gray-400 text-md">Expiry:</p>
+                <p className="text-sm">
+                  Please refer to the product packaging for the expiry date.
+                </p>
               </div>
               <div className="mt-4 md:mt-4">
                 <p className="text-gray-400 text-md">Product Description:</p>
