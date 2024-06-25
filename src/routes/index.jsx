@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from "../App";
 import HomeScreen from "../pages/HomeScreen";
 import LoginScreen from "../pages/LoginScreen";
@@ -17,7 +17,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import RegisteredSuccessfully from "../pages/RegisteredSuccessfully";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
