@@ -1,6 +1,6 @@
 # Dropstore is an open source ecommerce web coded in reactjs by [Dikshant Tatrari](https://github.com/dikshanttatrari).
 
-[Website Link](https://www.drop-store.me)
+[Dropstore Link](https://www.drop-store.me)
 
 ### Desktop - 
 
