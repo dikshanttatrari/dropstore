@@ -91,9 +91,9 @@ export default function Footer() {
 
             <Link
               className="hover:text-[#e23854] text-sm"
-              to={"mailto:dropstoredotlive@gmail.com"}
+              to={"mailto:dropstoredotme@gmail.com"}
             >
-              dropstoredotlive@gmail.com
+              dropstoredotme@gmail.com
             </Link>
           </div>
         </div>
