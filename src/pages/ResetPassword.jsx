@@ -12,7 +12,7 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `https://api.drop-store.me/reset-password/${token}`,
+        `http://192.168.1.8:8080/reset-password/${token}`,
         { newPassword: password }
       );
       setMessage(response.data.message);

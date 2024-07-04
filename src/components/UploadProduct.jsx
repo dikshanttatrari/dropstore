@@ -64,7 +64,7 @@ function UploadProduct({ onClose, fetchData }) {
     {
       id: 10,
       label: "Cold Drinks & Juices",
-      value: "cold drinks & juices",
+      value: "cold Drinks & Juices",
     },
     {
       id: 11,
@@ -79,7 +79,7 @@ function UploadProduct({ onClose, fetchData }) {
     {
       id: 13,
       label: "Breakfast & Instant food",
-      value: "breakfast & Instant Food",
+      value: "breakfast & Instant food",
     },
     {
       id: 14,
@@ -89,7 +89,7 @@ function UploadProduct({ onClose, fetchData }) {
     {
       id: 15,
       label: "Atta, Rice & Dal",
-      value: "aata, Rice & Dal",
+      value: "atta, Rice & Dal",
     },
     {
       id: 16,
@@ -151,7 +151,7 @@ function UploadProduct({ onClose, fetchData }) {
 
     try {
       const response = await axios.post(
-        "https://api.drop-store.me/upload-product",
+        "http://192.168.1.8:8080/upload-product",
         data
       );
 

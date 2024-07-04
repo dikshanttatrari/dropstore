@@ -92,7 +92,7 @@ function Categories() {
     {
       id: "12",
       name: "Breakfast & Instant food",
-      category: "breakfast & Instant food",
+      category: "breakfast & Instant Food",
       image:
         "https://res.cloudinary.com/dzwuseok5/image/upload/v1716806082/categoryImages/mkn5dkpgdfirfeupvesg.png",
     },

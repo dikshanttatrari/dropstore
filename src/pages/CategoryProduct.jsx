@@ -4,7 +4,6 @@ import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import loadingAnimation from "../assets/loading5.json";
 import Lottie from "react-lottie";
-import { FaBullseye } from "react-icons/fa6";
 
 function CategoryProduct() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +14,7 @@ function CategoryProduct() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `https://api.drop-store.me/category/${category}`
+          `http://192.168.1.8:8080/category/${category}`
         );
 
         setProducts(response?.data);

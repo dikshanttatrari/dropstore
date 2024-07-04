@@ -19,7 +19,7 @@ export default function HorizontalSlider({ category, heading }) {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://api.drop-store.me/horizontal-products",
+        "http://192.168.1.8:8080/horizontal-products",
         {
           method: "POST",
           headers: {

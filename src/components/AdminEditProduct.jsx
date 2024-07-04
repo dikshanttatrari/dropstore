@@ -152,7 +152,7 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
     try {
       const response = await axios.post(
-        "https://api.drop-store.me/update-product",
+        "http://192.168.1.8:8080/update-product",
         data
       );
       if (response.data.ok) {

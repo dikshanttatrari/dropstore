@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Categories from "../components/Categories";
 import HorizontalSlider from "../components/HorizontalSlider";
 
@@ -33,7 +33,12 @@ function HomeScreen({ fetchUserCartItems }) {
       />
       <HorizontalSlider
         category={"sweets & Ice cream"}
-        heading={"Craving for sweets?"}
+        heading={"Craving for sweets? We got you covered!"}
+      />
+      <HorizontalSlider
+        fetchUserCartItems={fetchUserCartItems}
+        category={"cold Drinks & Juices"}
+        heading={"Too hot outside? Grab a drink!"}
       />
       <HorizontalSlider
         category={"personalCare"}

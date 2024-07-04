@@ -7,7 +7,7 @@ function AllProducts() {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
 
   const fetchAllProducts = async () => {
-    const response = await fetch("https://api.drop-store.me/all-products");
+    const response = await fetch("http://192.168.1.8:8080/all-products");
 
     const dataResponse = await response.json();
 

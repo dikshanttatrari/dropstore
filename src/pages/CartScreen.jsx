@@ -26,7 +26,7 @@ function CartScreen() {
         return;
       }
 
-      const response = await fetch("https://api.drop-store.me/clear-cart", {
+      const response = await fetch("http://192.168.1.8:8080/clear-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function CartScreen() {
   };
 
   const fetchData = async () => {
-    const response = await fetch("https://api.drop-store.me/user-cart", {
+    const response = await fetch("http://192.168.1.8:8080/user-cart", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -80,17 +80,14 @@ function CartScreen() {
         return;
       }
 
-      const response = await fetch(
-        "https://api.drop-store.me/remove-from-cart",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ productId }),
-        }
-      );
+      const response = await fetch("http://192.168.1.8:8080/remove-from-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId }),
+      });
 
       const dataResponse = await response.json();
 
@@ -121,7 +118,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "https://api.drop-store.me/update-cart-product",
+        "http://192.168.1.8:8080/update-cart-product",
         {
           method: "POST",
           headers: {
@@ -165,7 +162,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "https://api.drop-store.me/update-cart-product",
+        "http://192.168.1.8:8080/update-cart-product",
         {
           method: "POST",
           headers: {
@@ -200,7 +197,7 @@ function CartScreen() {
     (prev, current) => prev + current?.quantity * current?.productId?.price,
     0
   );
-  const deliveryCharge = itemTotal >= 500 ? 0 : itemTotal >= 200 ? 15 : 25;
+  const deliveryCharge = itemTotal >= 500 ? Free : itemTotal >= 200 ? 15 : 25;
 
   const grandTotal = itemTotal + deliveryCharge;
 

@@ -40,7 +40,7 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("https://api.drop-store.me/all-orders", {
+    const response = await fetch("http://192.168.1.8:8080/all-orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,6 +53,33 @@ const ProfileScreen = () => {
     setOrders(orders);
   };
 
+  const handleCancelOrder = async (id) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      toast.error("Token expired. Please login again.");
+      return;
+    }
+
+    const response = await fetch("http://192.168.1.8:8080/cancel-order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
+      toast.success("Order cancelled successfully.");
+      fetchOrders();
+    } else {
+      toast.error(data.message || "Error cancelling order.");
+    }
+  };
+
   const fetchUserDetails = async () => {
     const token = localStorage.getItem("authToken");
     setToken(token);
@@ -62,14 +89,11 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await axios.get(
-        "https://api.drop-store.me/user-details",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get("http://192.168.1.8:8080/user-details", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setUserData(response.data);
     } catch (error) {
       console.log("Error fetching user details", error);
@@ -96,7 +120,7 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await fetch("https://api.drop-store.me/add-address", {
+      const response = await fetch("http://192.168.1.8:8080/add-address", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -129,23 +153,21 @@ const ProfileScreen = () => {
     }
   };
 
-  const handleDeleteAddress = async (id) => {
+  const handleDeleteAddress = async (orderId) => {
     const token = localStorage.getItem("authToken");
     if (!token) {
       toast.error("Please login to delete address.");
       return;
     }
 
-    const response = await fetch("https://api.drop-store.me/delete-address", {
+    const response = await fetch("http://192.168.1.8:8080/delete-address", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ orderId }),
     });
-
-    const data = await response.json();
 
     if (response.ok) {
       toast.success("Address deleted successfully.");
@@ -295,9 +317,31 @@ const ProfileScreen = () => {
                           <p className="font-bold">
                             Your {index === 0 ? "latest" : "previous"} orders
                           </p>
-                          <p className="text-sm font-bold mr-2">
-                            ₹ {item?.totalPrice}.00
-                          </p>
+                          <div className="flex items-center gap-4">
+                            <p className="text-sm font-bold mr-2">
+                              Total Price - ₹ {item?.totalPrice}.00
+                            </p>
+                            {!item?.delivered ? (
+                              <div>
+                                {item?.cancelled ? (
+                                  <p className="font-bold bg-[#e23856] rounded-lg p-1">
+                                    Order Cancelled
+                                  </p>
+                                ) : (
+                                  <button
+                                    onClick={() => handleCancelOrder(item?._id)}
+                                    className="font-bold bg-[#e23856] p-1 rounded-lg mr-2"
+                                  >
+                                    Cancel Order
+                                  </button>
+                                )}
+                              </div>
+                            ) : (
+                              <p className="font-bold bg-[#7CB342] rounded-lg p-1">
+                                Order Delivered
+                              </p>
+                            )}
+                          </div>
                         </div>
                         <div
                           key={index}
@@ -344,7 +388,9 @@ const ProfileScreen = () => {
                                               : "text-[#e23856] text-sm font-semibold"
                                           }
                                         >
-                                          {item?.delivered
+                                          {item?.cancelled
+                                            ? "Cancelled.."
+                                            : item?.delivered
                                             ? "Delivered"
                                             : "Pending.."}
                                         </p>
@@ -365,18 +411,26 @@ const ProfileScreen = () => {
                                         </p>
                                       </div>
                                       <div>
-                                        {item?.delivered ? (
-                                          <p className="text-[#7CB342] text-xs font-semibold text-center mb-2">
-                                            Your order was delivered on {""}
-                                            {moment(item?.deliveredAt).format(
-                                              "Do MMM YYYY hh:mm a"
-                                            )}
+                                        {item?.cancelled ? (
+                                          <p className="text-[#e23856] text-xs font-semibold text-center mb-2">
+                                            Your cancelled this order.
                                           </p>
                                         ) : (
-                                          <p className="text-[#e23856] text-xs font-semibold text-center mb-2">
-                                            Your order will be delivered under
-                                            24h.
-                                          </p>
+                                          <div>
+                                            {item?.delivered ? (
+                                              <p className="text-[#7CB342] text-xs font-semibold text-center mb-2">
+                                                Your order was delivered on {""}
+                                                {moment(
+                                                  item?.deliveredAt
+                                                ).format("Do MMM YYYY hh:mm a")}
+                                              </p>
+                                            ) : (
+                                              <p className="text-[#e23856] text-xs font-semibold text-center mb-2">
+                                                Your order will be delivered
+                                                under 24h.
+                                              </p>
+                                            )}
+                                          </div>
                                         )}
                                       </div>
                                     </div>

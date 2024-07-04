@@ -41,16 +41,13 @@ const ProductDetails = () => {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch(
-        "https://api.drop-store.me/product-details",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ productId: params?.productId }),
-        }
-      );
+      const response = await fetch("http://192.168.1.8:8080/product-details", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: params?.productId }),
+      });
       setLoading(false);
 
       const dataResponse = await response.json();
@@ -104,7 +101,7 @@ const ProductDetails = () => {
         return;
       }
 
-      const response = await fetch("https://api.drop-store.me/add-to-cart", {
+      const response = await fetch("http://192.168.1.8:8080/add-to-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,17 +142,14 @@ const ProductDetails = () => {
         return;
       }
 
-      const response = await fetch(
-        "https://api.drop-store.me/remove-from-cart",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ productId: data?._id }),
-        }
-      );
+      const response = await fetch("http://192.168.1.8:8080/remove-from-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId: data?._id }),
+      });
 
       const dataRes = await response.json();
 
@@ -318,7 +312,9 @@ const ProductDetails = () => {
               <h1 className="text-xl mt-4">Product Details:</h1>
               <div className="mt-4 md:mt-4">
                 <p className="text-gray-400 text-md">Brand:</p>
-                <p className="text-sm text-[#e25876]">{data.brandName}</p>
+                <p className="text-sm text-[#e25876] font-semibold">
+                  {data.brandName}
+                </p>
               </div>
               <div className="mt-4 md:mt-4">
                 <p className="text-gray-400 text-md">Category:</p>

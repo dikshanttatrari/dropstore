@@ -52,7 +52,11 @@ export default function Header() {
   return (
     <div className="flex justify-between align-center w-full p-2 bg-[#222] shadow-md container min-w-full fixed z-40">
       <div className="flex items-center" onClick={() => navigate("/")}>
-        <img src={logo} alt="logo" className="w-[50px] h-[50px] md:ml-[30px]" />
+        <img
+          src={logo}
+          alt="logo"
+          className="w-[50px] h-[50px] md:ml-[30px] cursor-pointer"
+        />
       </div>
       <div className="bg-[#e28854] text-white w-[50%] rounded-xl items-center flex flex-row">
         <input
