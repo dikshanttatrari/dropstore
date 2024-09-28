@@ -19,7 +19,7 @@ export default function HorizontalSlider({ category, heading }) {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://192.168.1.13:8080/horizontal-products",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/horizontal-products",
         {
           method: "POST",
           headers: {

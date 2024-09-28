@@ -40,12 +40,15 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.13:8080/all-orders", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/all-orders",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
 
@@ -60,14 +63,17 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.13:8080/cancel-order", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ orderId: id, userId: userData?._id }),
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/cancel-order",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ orderId: id, userId: userData?._id }),
+      }
+    );
 
     const data = await response.json();
     console.log(data);
@@ -90,7 +96,7 @@ const ProfileScreen = () => {
 
     try {
       const response = await axios.get(
-        "http://192.168.1.13:8080/user-details",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/user-details",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -123,14 +129,17 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await fetch("http://192.168.1.13:8080/add-address", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(addressData),
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/add-address",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(addressData),
+        }
+      );
 
       const data = await response.json();
 
@@ -163,14 +172,17 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.13:8080/delete-address", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ orderId }),
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/delete-address",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ orderId }),
+      }
+    );
 
     if (response.ok) {
       toast.success("Address deleted successfully.");

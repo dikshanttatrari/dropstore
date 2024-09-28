@@ -12,12 +12,15 @@ function RegisteredSuccessfully() {
   const handleVerifyOTP = async () => {
     setIsVerifying(true);
     try {
-      const response = await fetch(`http://192.168.1.13:8080/verify/${otp}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/verify/${otp}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
       if (data.message === "OTP Verified") {
         navigate("/login");
@@ -37,12 +40,15 @@ function RegisteredSuccessfully() {
   };
 
   const handleResendOTP = async () => {
-    const response = await fetch("http://192.168.1.13:8080/send-otp", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/send-otp",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     if (data.message === "OTP Sent") {
       toast.success("OTP Sent Successfully");

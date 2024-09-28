@@ -11,7 +11,8 @@ function SearchProduct() {
   const fetchProducts = async () => {
     const params = new URLSearchParams(query?.search);
     const response = await fetch(
-      "http://192.168.1.13:8080/search" + query?.search
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/search" +
+        query?.search
     );
     const data = await response.json();
     setData(data);

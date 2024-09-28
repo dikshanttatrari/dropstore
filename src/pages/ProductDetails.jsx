@@ -41,13 +41,16 @@ const ProductDetails = () => {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch("http://192.168.1.13:8080/product-details", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId: params?.productId }),
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/product-details",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ productId: params?.productId }),
+        }
+      );
       setLoading(false);
 
       const dataResponse = await response.json();
@@ -101,14 +104,17 @@ const ProductDetails = () => {
         return;
       }
 
-      const response = await fetch("http://192.168.1.13:8080/add-to-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ productId: id, quantity: 1 }),
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/add-to-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ productId: id, quantity: 1 }),
+        }
+      );
 
       const dataResponse = await response.json();
 
@@ -143,7 +149,7 @@ const ProductDetails = () => {
       }
 
       const response = await fetch(
-        "http://192.168.1.13:8080/remove-from-cart",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/remove-from-cart",
         {
           method: "POST",
           headers: {

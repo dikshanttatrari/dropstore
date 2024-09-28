@@ -43,13 +43,16 @@ function ConfirmationScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.13:8080/clear-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/clear-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const dataResponse = await response.json();
 
@@ -86,13 +89,16 @@ function ConfirmationScreen() {
       return;
     }
 
-    const response = await fetch("http://192.168.1.13:8080/get-addresses", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/get-addresses",
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     setLoading(false);
     const data = await response.json();
 
@@ -112,19 +118,22 @@ function ConfirmationScreen() {
   const handlePlaceOrder = async () => {
     const token = localStorage.getItem("authToken");
     try {
-      const response = await fetch("http://192.168.1.13:8080/order", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          address: selectedAddress,
-          paymentMethod: selectedOption,
-          grandTotal,
-          cartItem: data,
-        }),
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/order",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            address: selectedAddress,
+            paymentMethod: selectedOption,
+            grandTotal,
+            cartItem: data,
+          }),
+        }
+      );
 
       if (response.ok) {
         window.history.replaceState({ orderCompleted: true }, "");
@@ -142,14 +151,17 @@ function ConfirmationScreen() {
 
   const getSessionId = async () => {
     try {
-      const response = await axios.get("http://192.168.1.13:8080/payment", {
-        params: {
-          orderId: data[0]?._id,
-          userId: data[0]?.userId,
-          amount: grandTotal,
-          selectedAddress: selectedAddress,
-        },
-      });
+      const response = await axios.get(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/payment",
+        {
+          params: {
+            orderId: data[0]?._id,
+            userId: data[0]?.userId,
+            amount: grandTotal,
+            selectedAddress: selectedAddress,
+          },
+        }
+      );
 
       if (response.data && response.data.payment_session_id) {
         setOrderId(response.data.order_id);

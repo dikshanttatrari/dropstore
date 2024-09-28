@@ -5,13 +5,16 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleClick = async () => {
-    const response = await fetch("http://192.168.1.13:8080/forgot-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/forgot-password",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
 
     const data = await response.json();
 

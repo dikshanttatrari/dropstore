@@ -7,7 +7,9 @@ function AllProducts() {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
 
   const fetchAllProducts = async () => {
-    const response = await fetch("http://192.168.1.13:8080/all-products");
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/all-products"
+    );
 
     const dataResponse = await response.json();
 

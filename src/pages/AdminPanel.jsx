@@ -19,7 +19,7 @@ function AdminPanel() {
 
       try {
         const response = await axios.get(
-          "http://192.168.1.13:8080/user-details",
+          "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/user-details",
           {
             headers: {
               Authorization: `Bearer ${token}`,

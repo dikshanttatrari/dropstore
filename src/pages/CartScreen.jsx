@@ -26,13 +26,16 @@ function CartScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.13:8080/clear-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/clear-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const dataResponse = await response.json();
 
@@ -51,13 +54,16 @@ function CartScreen() {
   };
 
   const fetchData = async () => {
-    const response = await fetch("http://192.168.1.13:8080/user-cart", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-      },
-    });
+    const response = await fetch(
+      "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/user-cart",
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      }
+    );
     setLoading(false);
     const data = await response.json();
     if (response.ok) {
@@ -81,7 +87,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "http://192.168.1.13:8080/remove-from-cart",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/remove-from-cart",
         {
           method: "POST",
           headers: {
@@ -121,7 +127,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "http://192.168.1.13:8080/update-cart-product",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/update-cart-product",
         {
           method: "POST",
           headers: {
@@ -165,7 +171,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "http://192.168.1.13:8080/update-cart-product",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/update-cart-product",
         {
           method: "POST",
           headers: {

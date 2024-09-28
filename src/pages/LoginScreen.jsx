@@ -46,7 +46,10 @@ function LoginScreen() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://192.168.1.13:8080/login", data);
+      const res = await axios.post(
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/login",
+        data
+      );
       const token = res.data.token;
 
       localStorage.setItem("authToken", token);

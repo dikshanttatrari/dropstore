@@ -14,7 +14,7 @@ function CategoryProduct() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.1.13:8080/category/${category}`
+          `https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/category/${category}`
         );
 
         setProducts(response?.data);

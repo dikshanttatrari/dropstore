@@ -186,7 +186,7 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.13:8080/update-product",
+        "https://nqsiggh7uuup6bryq6kxzjouam0xefid.lambda-url.us-west-1.on.aws/update-product",
         data
       );
       if (response.data.ok) {
