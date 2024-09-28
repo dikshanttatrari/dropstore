@@ -17,84 +17,114 @@ function UploadProduct({ onClose, fetchData }) {
 
   const productCategory = [
     {
-      id: 1,
+      id: "1",
       label: "Stationery",
       value: "stationery",
     },
     {
-      id: 2,
+      id: "2",
       label: "Sauces & Spreads",
       value: "sauces & Spreads",
     },
     {
-      id: 3,
+      id: "3",
       label: "Personal Care",
       value: "personalCare",
     },
     {
-      id: 4,
+      id: "4",
       label: "Baby Care",
       value: "babyCare",
     },
     {
-      id: 5,
+      id: "5",
       label: "Cleaning Essentials",
-      value: "cleaning Essentials",
+      value: "cleaningEssentials",
     },
     {
-      id: 6,
+      id: "6",
       label: "Snacks & Munchies",
       value: "snacks & Munchies",
     },
     {
-      id: 7,
+      id: "7",
       label: "Bakery & Biscuits",
       value: "bakery & Biscuits",
     },
     {
-      id: 8,
+      id: "8",
       label: "Dairy, Bread & Eggs",
       value: "dairy, Bread & Eggs",
     },
     {
-      id: 9,
+      id: "9",
       label: "Sweets & Ice cream",
       value: "sweets & Ice cream",
     },
     {
-      id: 10,
+      id: "10",
       label: "Cold Drinks & Juices",
       value: "cold Drinks & Juices",
     },
     {
-      id: 11,
+      id: "11",
       label: "Pet Care",
       value: "petCare",
     },
     {
-      id: 12,
+      id: "12",
       label: "Home & Office",
       value: "home & Office",
     },
     {
-      id: 13,
+      id: "13",
       label: "Breakfast & Instant food",
-      value: "breakfast & Instant food",
+      value: "breakfast & Instant Food",
     },
     {
-      id: 14,
+      id: "14",
       label: "Tea, Coffee & More",
       value: "tea, Coffee & More",
     },
     {
-      id: 15,
+      id: "15",
       label: "Atta, Rice & Dal",
       value: "atta, Rice & Dal",
     },
     {
-      id: 16,
+      id: "16",
       label: "Masala, Oil & More",
       value: "masala, Oil & More",
+    },
+    {
+      id: "17",
+      label: "Body & Bath",
+      value: "body & Bath",
+    },
+    {
+      id: "18",
+      label: "Hair Care",
+      value: "hairCare",
+    },
+    {
+      id: "19",
+      label: "Skin & Face",
+      value: "skin & Face",
+    },
+    {
+      id: "20",
+      label: "Oral Care",
+      value: "oralCare",
+    },
+    {
+      id: "21",
+      label: "Feminine Hygiene",
+      value: "feminineHygiene",
+    },
+    {
+      id: "22",
+      label: "Pharma & Wellness",
+      value: "pharma & Wellness",
     },
   ];
 
@@ -151,7 +181,7 @@ function UploadProduct({ onClose, fetchData }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.8:8080/upload-product",
+        "http://192.168.1.13:8080/upload-product",
         data
       );
 

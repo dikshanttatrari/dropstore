@@ -15,7 +15,7 @@ function AllUsers() {
   });
   const fetchAllUsers = async () => {
     try {
-      const response = await fetch("http://192.168.1.8:8080/all-users");
+      const response = await fetch("http://192.168.1.13:8080/all-users");
       const data = await response.json();
 
       if (response.ok) {

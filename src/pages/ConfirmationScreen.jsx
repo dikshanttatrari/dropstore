@@ -3,9 +3,10 @@ import { FaRegCircle, FaRegDotCircle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../userContext";
-import useRazorpay from "react-razorpay";
 import Lottie from "react-lottie";
 import loadingAnimation from "../assets/loading3.json";
+import axios from "axios";
+import { load } from "@cashfreepayments/cashfree-js";
 
 function ConfirmationScreen() {
   const { fetchUserCartItems } = useContext(UserContext);
@@ -14,8 +15,18 @@ function ConfirmationScreen() {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const navigate = useNavigate();
-  const [razorpay] = useRazorpay();
+  const [orderId, setOrderId] = useState("");
   const [loading, setLoading] = useState(true);
+
+  let cashfree;
+
+  const initialiseSDK = async () => {
+    cashfree = await load({
+      mode: "sandbox",
+    });
+  };
+
+  initialiseSDK();
 
   const location = useLocation();
   const { itemTotal, grandTotal, data } = location.state || {};
@@ -32,7 +43,7 @@ function ConfirmationScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/clear-cart", {
+      const response = await fetch("http://192.168.1.13:8080/clear-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +86,7 @@ function ConfirmationScreen() {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/get-addresses", {
+    const response = await fetch("http://192.168.1.13:8080/get-addresses", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -101,7 +112,7 @@ function ConfirmationScreen() {
   const handlePlaceOrder = async () => {
     const token = localStorage.getItem("authToken");
     try {
-      const response = await fetch("http://192.168.1.8:8080/order", {
+      const response = await fetch("http://192.168.1.13:8080/order", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -129,74 +140,48 @@ function ConfirmationScreen() {
     }
   };
 
+  const getSessionId = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.13:8080/payment", {
+        params: {
+          orderId: data[0]?._id,
+          userId: data[0]?.userId,
+          amount: grandTotal,
+          selectedAddress: selectedAddress,
+        },
+      });
+
+      if (response.data && response.data.payment_session_id) {
+        setOrderId(response.data.order_id);
+        return response.data.payment_session_id;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const pay = async () => {
-    // try {
-    //   const options = {
-    //     description: "Adding money to wallet",
-    //     currency: "INR",
-    //     key: "rzp_test_3tx4nHt1Q7N3EA",
-    //     amount: grandTotal * 100,
-    //     name: "Dropstore",
-    //     prefill: {
-    //       email: "dropstoredotme@gmail.com",
-    //       contact: "9999999999",
-    //       name: "Dropstore",
-    //     },
-    //     theme: { color: "#e23856" },
-    //     handler: async function (response) {
-    //       const token = localStorage.getItem("authToken");
+    try {
+      const sessionId = await getSessionId();
+      const checkoutOptions = {
+        paymentSessionId: sessionId,
+        redirectTarget: "_modal",
+      };
 
-    //       try {
-    //         const dataResponse = await fetch(
-    //           "http://192.168.1.8:8080/order",
-    //           {
-    //             method: "POST",
-    //             headers: {
-    //               "content-type": "application/json",
-    //               Authorization: `Bearer ${token}`,
-    //             },
-    //             body: JSON.stringify({
-    //               address: selectedAddress,
-    //               paymentMethod: "card",
-    //               grandTotal,
-    //               cartItem: data,
-    //             }),
-    //           }
-    //         );
-
-    //         if (dataResponse.ok) {
-    //           toast.success("Order placed successfully");
-    //           clearCart();
-    //           navigate("/order");
-    //         } else {
-    //           toast.error("Failed to place order");
-    //         }
-    //       } catch (error) {
-    //         console.error("Error placing order:", error);
-    //         toast.error("Failed to place order. Please try again.");
-    //       }
-    //     },
-    //     modal: {
-    //       ondismiss: function () {
-    //         console.log("Checkout form closed");
-    //       },
-    //     },
-    //     debug: true,
-    //   };
-
-    //   const rzp = new window.Razorpay(options);
-
-    //   rzp.on("payment.failed", function (response) {
-    //     console.error("Payment failed:", response);
-    //     toast.error("Payment failed. Please try again.");
-    //   });
-
-    //   console.log("Opening Razorpay checkout...");
-    //   rzp.open();
-    // } catch (err) {
-    //   console.error("Error in pay function", err);
-    // }
-    toast.error("Payment gateway is disabled for now. Please select COD");
+      cashfree
+        .checkout(checkoutOptions)
+        .then((response) => {
+          if (response.status === "SUCCESS") {
+            console.log("Payment successful");
+            handlePlaceOrder();
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

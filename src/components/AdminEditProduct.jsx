@@ -18,84 +18,114 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
   const productCategory = [
     {
-      id: 1,
+      id: "1",
       label: "Stationery",
       value: "stationery",
     },
     {
-      id: 2,
+      id: "2",
       label: "Sauces & Spreads",
       value: "sauces & Spreads",
     },
     {
-      id: 3,
+      id: "3",
       label: "Personal Care",
       value: "personalCare",
     },
     {
-      id: 4,
+      id: "4",
       label: "Baby Care",
       value: "babyCare",
     },
     {
-      id: 5,
+      id: "5",
       label: "Cleaning Essentials",
-      value: "cleaning Essentials",
+      value: "cleaningEssentials",
     },
     {
-      id: 6,
+      id: "6",
       label: "Snacks & Munchies",
       value: "snacks & Munchies",
     },
     {
-      id: 7,
+      id: "7",
       label: "Bakery & Biscuits",
       value: "bakery & Biscuits",
     },
     {
-      id: 8,
+      id: "8",
       label: "Dairy, Bread & Eggs",
       value: "dairy, Bread & Eggs",
     },
     {
-      id: 9,
+      id: "9",
       label: "Sweets & Ice cream",
       value: "sweets & Ice cream",
     },
     {
-      id: 10,
+      id: "10",
       label: "Cold Drinks & Juices",
-      value: "cold drinks & juices",
+      value: "cold Drinks & Juices",
     },
     {
-      id: 11,
+      id: "11",
       label: "Pet Care",
       value: "petCare",
     },
     {
-      id: 12,
+      id: "12",
       label: "Home & Office",
       value: "home & Office",
     },
     {
-      id: 13,
+      id: "13",
       label: "Breakfast & Instant food",
       value: "breakfast & Instant Food",
     },
     {
-      id: 14,
+      id: "14",
       label: "Tea, Coffee & More",
       value: "tea, Coffee & More",
     },
     {
-      id: 15,
+      id: "15",
       label: "Atta, Rice & Dal",
-      value: "aata, Rice & Dal",
+      value: "atta, Rice & Dal",
     },
     {
-      id: 16,
+      id: "16",
       label: "Masala, Oil & More",
       value: "masala, Oil & More",
+    },
+    {
+      id: "17",
+      label: "Body & Bath",
+      value: "body & Bath",
+    },
+    {
+      id: "18",
+      label: "Hair Care",
+      value: "hairCare",
+    },
+    {
+      id: "19",
+      label: "Skin & Face",
+      value: "skin & Face",
+    },
+    {
+      id: "20",
+      label: "Oral Care",
+      value: "oralCare",
+    },
+    {
+      id: "21",
+      label: "Feminine Hygiene",
+      value: "feminineHygiene",
+    },
+    {
+      id: "22",
+      label: "Pharma & Wellness",
+      value: "pharma & Wellness",
     },
   ];
 
@@ -112,10 +142,13 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
   const handleUploadProduct = async (e) => {
     const file = e.target.files[0];
-    const url = `https://api.cloudinary.com/v1_1/dzwuseok5/image/upload`;
-    const uploadImage = async (image) => {
+    const url = `https://api.cloudinary.com/v1_1/dzwuseok5/${
+      file.type.includes("video") ? "video/upload" : "image/upload"
+    }`;
+
+    const uploadFile = async (file) => {
       const formData = new FormData();
-      formData.append("file", image);
+      formData.append("file", file);
       formData.append("upload_preset", "dropstore_products");
 
       const dataResponse = await fetch(url, {
@@ -125,12 +158,13 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
       return dataResponse.json();
     };
-    const uploadImageCloudinary = await uploadImage(file);
+
+    const uploadResult = await uploadFile(file);
 
     setData((prev) => {
       return {
         ...prev,
-        productImage: [...prev.productImage, uploadImageCloudinary.url],
+        productImage: [...prev.productImage, uploadResult.url],
       };
     });
   };
@@ -152,7 +186,7 @@ function AdminEditProduct({ onClose, productData, fetchData }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.8:8080/update-product",
+        "http://192.168.1.13:8080/update-product",
         data
       );
       if (response.data.ok) {

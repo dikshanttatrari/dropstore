@@ -18,7 +18,7 @@ function App() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/cart-count", {
+      const response = await fetch("http://192.168.1.13:8080/cart-count", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

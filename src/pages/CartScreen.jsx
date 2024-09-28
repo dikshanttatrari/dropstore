@@ -26,7 +26,7 @@ function CartScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/clear-cart", {
+      const response = await fetch("http://192.168.1.13:8080/clear-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function CartScreen() {
   };
 
   const fetchData = async () => {
-    const response = await fetch("http://192.168.1.8:8080/user-cart", {
+    const response = await fetch("http://192.168.1.13:8080/user-cart", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -80,14 +80,17 @@ function CartScreen() {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/remove-from-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ productId }),
-      });
+      const response = await fetch(
+        "http://192.168.1.13:8080/remove-from-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ productId }),
+        }
+      );
 
       const dataResponse = await response.json();
 
@@ -118,7 +121,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "http://192.168.1.8:8080/update-cart-product",
+        "http://192.168.1.13:8080/update-cart-product",
         {
           method: "POST",
           headers: {
@@ -162,7 +165,7 @@ function CartScreen() {
       }
 
       const response = await fetch(
-        "http://192.168.1.8:8080/update-cart-product",
+        "http://192.168.1.13:8080/update-cart-product",
         {
           method: "POST",
           headers: {

@@ -41,7 +41,7 @@ const ProductDetails = () => {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await fetch("http://192.168.1.8:8080/product-details", {
+      const response = await fetch("http://192.168.1.13:8080/product-details", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ const ProductDetails = () => {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/add-to-cart", {
+      const response = await fetch("http://192.168.1.13:8080/add-to-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -142,14 +142,17 @@ const ProductDetails = () => {
         return;
       }
 
-      const response = await fetch("http://192.168.1.8:8080/remove-from-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ productId: data?._id }),
-      });
+      const response = await fetch(
+        "http://192.168.1.13:8080/remove-from-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ productId: data?._id }),
+        }
+      );
 
       const dataRes = await response.json();
 

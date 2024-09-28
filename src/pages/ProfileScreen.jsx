@@ -40,7 +40,7 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/all-orders", {
+    const response = await fetch("http://192.168.1.13:8080/all-orders", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -60,13 +60,13 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/cancel-order", {
+    const response = await fetch("http://192.168.1.13:8080/cancel-order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ orderId: id, userId: userData?._id }),
     });
 
     const data = await response.json();
@@ -89,11 +89,14 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await axios.get("http://192.168.1.8:8080/user-details", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "http://192.168.1.13:8080/user-details",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setUserData(response.data);
     } catch (error) {
       console.log("Error fetching user details", error);
@@ -120,7 +123,7 @@ const ProfileScreen = () => {
     }
 
     try {
-      const response = await fetch("http://192.168.1.8:8080/add-address", {
+      const response = await fetch("http://192.168.1.13:8080/add-address", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -160,7 +163,7 @@ const ProfileScreen = () => {
       return;
     }
 
-    const response = await fetch("http://192.168.1.8:8080/delete-address", {
+    const response = await fetch("http://192.168.1.13:8080/delete-address", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -315,17 +318,16 @@ const ProfileScreen = () => {
                       <div key={index}>
                         <div className="ml-2 bg-[#1e88e5] rounded-lg p-2 flex items-center justify-between">
                           <p className="font-bold">
-                            Your {index === 0 ? "latest" : "previous"} orders
+                            {moment(item?.timeStamp).format(
+                              "Do MMM YY, hh:mm a"
+                            )}
                           </p>
                           <div className="flex items-center gap-4">
-                            <p className="text-sm font-bold mr-2">
-                              Total Price - ₹ {item?.totalPrice}.00
-                            </p>
                             {!item?.delivered ? (
                               <div>
                                 {item?.cancelled ? (
                                   <p className="font-bold bg-[#e23856] rounded-lg p-1">
-                                    Order Cancelled
+                                    Cancelled
                                   </p>
                                 ) : (
                                   <button

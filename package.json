@@ -13,7 +13,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cashfreepayments/cashfree-js": "^1.0.5",
     "axios": "^1.7.2",
+    "cashfree-sdk": "^0.1.1",
     "debounce": "^2.1.0",
     "dotenv": "^16.4.5",
     "gh-pages": "^6.1.1",

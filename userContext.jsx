@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
       const token = localStorage.getItem("authToken");
       if (!token) return;
 
-      const response = await fetch("http://192.168.1.8:8080/cart-count", {
+      const response = await fetch("http://192.168.1.13:8080/cart-count", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -37,9 +37,12 @@ export const UserProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await axios.get("http://192.168.1.8:8080/user-details", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "http://192.168.1.13:8080/user-details",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUser(response.data);
     } catch (error) {
       console.error("Error fetching user details", error);

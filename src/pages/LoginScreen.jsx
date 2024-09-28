@@ -46,7 +46,7 @@ function LoginScreen() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://192.168.1.8:8080/login", data);
+      const res = await axios.post("http://192.168.1.13:8080/login", data);
       const token = res.data.token;
 
       localStorage.setItem("authToken", token);

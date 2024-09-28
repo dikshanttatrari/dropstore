@@ -1,4 +1,4 @@
-import { createBrowserRouter, createHashRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from "../App";
 import HomeScreen from "../pages/HomeScreen";
 import LoginScreen from "../pages/LoginScreen";

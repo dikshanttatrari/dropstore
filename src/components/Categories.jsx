@@ -24,7 +24,7 @@ function Categories() {
       name: "Personal Care",
       category: "personalCare",
       image:
-        "https://res.cloudinary.com/dzwuseok5/image/upload/v1716806084/categoryImages/ltfekknuygyy4h7vwlwr.png",
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1726672246/categoryImages/lppic8k5ovbrlmwacakq.png",
     },
     {
       id: "3",
@@ -116,6 +116,48 @@ function Categories() {
       category: "masala, Oil & More",
       image:
         "https://res.cloudinary.com/dzwuseok5/image/upload/v1716806084/categoryImages/drilwcr77ha5jm40zabc.png",
+    },
+    {
+      id: "16",
+      name: "Body & Bath",
+      category: "body & Bath",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1725970003/categoryImages/woppz8kipj4v2yxpxoqv.png",
+    },
+    {
+      id: "17",
+      name: "Hair Care",
+      category: "hairCare",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1725970055/categoryImages/y0ryiyysmk8ti9yv5laa.png",
+    },
+    {
+      id: "18",
+      name: "Skin & Face",
+      category: "skin & Face",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1725970062/categoryImages/efb28owwubza2opsp4gt.png",
+    },
+    {
+      id: "19",
+      name: "Oral Care",
+      category: "oralCare",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1725970109/categoryImages/nv5qidxz1fiyrjvjsbsm.png",
+    },
+    {
+      id: "20",
+      name: "Feminine Hygiene",
+      category: "feminineHygiene",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1727257503/categoryImages/qgu6gia0za5g6zp0p1wf.png",
+    },
+    {
+      id: "21",
+      name: "Pharma & Wellness",
+      category: "pharma & Wellness",
+      image:
+        "https://res.cloudinary.com/dzwuseok5/image/upload/v1726671939/categoryImages/l8yj6wigomjq7wif28fb.png",
     },
   ];
 
