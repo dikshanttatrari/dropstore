@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "dropstore",
-      "package_name": "com.dikshanttatrari.dropstore", // Your app's package name
+      "package_name": "com.dikshanttatrari.dropstore",
       "sha256_cert_fingerprints": [
         "CB:A4:73:FC:5F:75:F1:07:B9:B7:3B:10:9A:44:59:AF:9B:70:EE:5C:FB:76:52:9D:74:C9:BD:C0:14:1B:4E:CD"
       ]
